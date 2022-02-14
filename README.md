@@ -32,7 +32,7 @@ To build and run the source projects and the sample apps, you need a **macOS** p
  with:
 - Xamarin (Visual Studio 2019 for Mac version 8.9.5 or later)
 - Xcode with Command Line Tools (version 12.3 or later)
-- Flutter SDK (version 2.0.4 or later)
+- Flutter SDK (version 2.10.1 or later)
 
 For specific instructions on how to install and configure Flutter please refer to: 
 
