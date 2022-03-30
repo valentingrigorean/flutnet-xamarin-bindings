@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.19
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutnet.Interop.Android", "Flutnet.Interop.Android.csproj", "{FF7F682C-3813-4A38-9B08-1A5DEF1EE88A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		ReleaseWithDebugNativeRef|Any CPU = ReleaseWithDebugNativeRef|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF7F682C-3813-4A38-9B08-1A5DEF1EE88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7F682C-3813-4A38-9B08-1A5DEF1EE88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7F682C-3813-4A38-9B08-1A5DEF1EE88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7F682C-3813-4A38-9B08-1A5DEF1EE88A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7F682C-3813-4A38-9B08-1A5DEF1EE88A}.ReleaseWithDebugNativeRef|Any CPU.ActiveCfg = ReleaseWithDebugNativeRef|Any CPU
+		{FF7F682C-3813-4A38-9B08-1A5DEF1EE88A}.ReleaseWithDebugNativeRef|Any CPU.Build.0 = ReleaseWithDebugNativeRef|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1196045A-3E65-45BB-8E7B-0B8D2975C166}
+	EndGlobalSection
+EndGlobal
