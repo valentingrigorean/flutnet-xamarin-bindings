@@ -8,15 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ae16c48-59d9-404e-8164-03c21a64834b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.FlutterSync/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.FlutterSync/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.FlutterSync/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Flutnet.Interop.Android/Flutnet.Interop.Android.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Flutnet.Interop.Android/Flutnet.Interop.Android.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Flutnet.Interop.Java8/Flutnet.Interop.Java8.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Flutnet.Interop.Java8/Flutnet.Interop.Java8.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/objective-sharpie-files/ApiDefinitions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/objective-sharpie-files/StructsAndEnums.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/Flutnet.Interop.Android/Flutnet.Interop.Android.nuspec" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Flutnet.Interop.Android/Flutnet.Interop.Android.nuspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/Flutnet.Interop.iOS/Flutnet.Interop.iOS.nuspec" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Flutnet.Interop.iOS/Flutnet.Interop.iOS.nuspec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tools/FlutterSync/FlutterSync" beforeDir="false" afterPath="$PROJECT_DIR$/../tools/FlutterSync/FlutterSync" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tools/FlutterSync/FlutterSync.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../tools/FlutterSync/FlutterSync.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlutterSync/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlutterSync/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlutterSync/FlutterSync.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FlutterSync/FlutterSync.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,14 +22,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c32b04c7c13f2816c0248a974acf52989be8e7886cc390d8914651c455/Environment.Unix.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/29deab6b677c4fd9a1b8fb8c423bbf8214c00/fe/144b2621/CommandResult.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/86f4c7ddb389bba8fc44a3117ae5d5a6c3698da5f4952f847b7546632be372b/StringReader.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17dccd4430be64861b51fb4d85377bb5954dbae7fbaf7fb3768a4be3bca9cf/Console.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/844580811f2d7968fe58882f1d7bccfd5d997c2b92934cf25d8ad15af2c1c40/ParserResultExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/29a473875d4d3ada5a7c434f4c1159c99a12eea3c55718f18f9fce58cf37f1e/String.Manipulation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/29deab6b677c4fd9a1b8fb8c423bbf8214c00/00/e2b230e8/Command.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/29deab6b677c4fd9a1b8fb8c423bbf8214c00/fe/144b2621/CommandResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a0047173a3a94842b736f453e145fa4d8bb400/84/334ac94a/StringSplitOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a5d4210d25db455495d2219fa5af01b714c00/33/f37da26c/Command.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a5d4210d25db455495d2219fa5af01b714c00/c4/c9fbabf5/Shell.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17dccd4430be64861b51fb4d85377bb5954dbae7fbaf7fb3768a4be3bca9cf/Console.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/29a473875d4d3ada5a7c434f4c1159c99a12eea3c55718f18f9fce58cf37f1e/String.Manipulation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c32b04c7c13f2816c0248a974acf52989be8e7886cc390d8914651c455/Environment.Unix.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/844580811f2d7968fe58882f1d7bccfd5d997c2b92934cf25d8ad15af2c1c40/ParserResultExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/86f4c7ddb389bba8fc44a3117ae5d5a6c3698da5f4952f847b7546632be372b/StringReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FlutterSync/FlutnetShell.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FlutterSync/FlutterSync.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FlutterSync/FlutterTools.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,18 +46,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RunManager" selected=".NET Project.Debug">
     <configuration name="Publish FlutterSync to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" runtime="osx-x64" self_contained="true" target_folder="$PROJECT_DIR$/FlutterSync/bin/Release/netcoreapp3.1/publish" target_framework="netcoreapp3.1" uuid_high="-4144269383285060585" uuid_low="-5981652534191321181" />
@@ -61,7 +63,7 @@
     </configuration>
     <configuration name="Debug" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/FlutterSync/bin/Release/netcoreapp3.1/FlutterSync" />
-      <option name="PROGRAM_PARAMETERS" value="--TargetDirectory ." />
+      <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlutterSync/bin/Release/netcoreapp3.1" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -94,6 +96,7 @@
       <workItem from="1648659230072" duration="3240000" />
       <workItem from="1648665018421" duration="220000" />
       <workItem from="1648667004674" duration="7000" />
+      <workItem from="1652361221025" duration="800000" />
     </task>
     <servers />
   </component>
@@ -121,6 +124,45 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/FlutterSync/FlutterTools.cs</url>
+          <line>20</line>
+          <properties documentPath="$PROJECT_DIR$/FlutterSync/FlutterTools.cs" initialLine="20" containingFunctionPresentation="method 'GetVersion'">
+            <startOffsets>
+              <option value="619" />
+            </startOffsets>
+            <endOffsets>
+              <option value="688" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/FlutterSync/FlutterTools.cs</url>
+          <line>15</line>
+          <properties documentPath="$PROJECT_DIR$/FlutterSync/FlutterTools.cs" initialLine="15" containingFunctionPresentation="method 'GetVersion'">
+            <startOffsets>
+              <option value="396" />
+            </startOffsets>
+            <endOffsets>
+              <option value="522" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/FlutterSync/FlutnetShell.cs</url>
+          <line>72</line>
+          <properties documentPath="$PROJECT_DIR$/FlutterSync/FlutnetShell.cs" initialLine="72" containingFunctionPresentation="method 'RunInMacOsShell'">
+            <startOffsets>
+              <option value="2774" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2816" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
