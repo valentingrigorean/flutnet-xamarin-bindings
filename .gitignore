@@ -112,3 +112,4 @@ packages/
 # artifacts
 artifacts/
 toolsSrc/FlutterSync/Properties/launchSettings.json
+.idea
