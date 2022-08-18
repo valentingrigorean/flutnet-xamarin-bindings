@@ -17,7 +17,7 @@
     <icon>images\icon.png</icon>
     <dependencies>
       <group targetFramework="MonoAndroid">
-        <dependency id="Xamarin.AndroidX.Lifecycle.Common" version="2.2.0" />
+        <dependency id="Xamarin.AndroidX.Lifecycle.Common" version="2.5.1" />
       </group>
     </dependencies>
   </metadata>

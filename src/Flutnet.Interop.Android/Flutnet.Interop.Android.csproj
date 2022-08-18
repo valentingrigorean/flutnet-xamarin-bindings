@@ -110,11 +110,5 @@
       <Link>Jars\flutter_embedding.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Flutnet.Interop.Java8\Flutnet.Interop.Java8.csproj">
-      <Project>{15debc74-e3eb-408f-8bae-e3a6404509f5}</Project>
-      <Name>Flutnet.Interop.Java8</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
