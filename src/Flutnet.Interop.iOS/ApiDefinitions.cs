@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CoreGraphics;
 using CoreVideo;
 using Foundation;
@@ -79,7 +79,7 @@ namespace Flutnet.Interop
         [Static, Abstract]
         [Export("sharedInstance")]
         IFlutterMessageCodec SharedInstance { get; }
-        
+
         // @required -(NSData * _Nullable)encode:(id _Nullable)message;
         [Abstract]
         [Export("encode:")]
@@ -99,19 +99,19 @@ namespace Flutnet.Interop
 
     // @interface FlutterBinaryCodec : NSObject <FlutterMessageCodec>
     [BaseType(typeof(NSObject))]
-    interface FlutterBinaryCodec : IFlutterMessageCodec
+    interface FlutterBinaryCodec : FlutterMessageCodec
     {
     }
 
     // @interface FlutterStringCodec : NSObject <FlutterMessageCodec>
     [BaseType(typeof(NSObject))]
-    interface FlutterStringCodec : IFlutterMessageCodec
+    interface FlutterStringCodec : FlutterMessageCodec
     {
     }
 
     // @interface FlutterJSONMessageCodec : NSObject <FlutterMessageCodec>
     [BaseType(typeof(NSObject))]
-    interface FlutterJSONMessageCodec : IFlutterMessageCodec
+    interface FlutterJSONMessageCodec : FlutterMessageCodec
     {
     }
 
@@ -218,7 +218,7 @@ namespace Flutnet.Interop
 
     // @interface FlutterStandardMessageCodec : NSObject <FlutterMessageCodec>
     [BaseType(typeof(NSObject))]
-    interface FlutterStandardMessageCodec : IFlutterMessageCodec
+    interface FlutterStandardMessageCodec : FlutterMessageCodec
     {
         // +(instancetype _Nonnull)codecWithReaderWriter:(FlutterStandardReaderWriter * _Nonnull)readerWriter;
         [Static]
@@ -349,13 +349,13 @@ namespace Flutnet.Interop
 
     // @interface FlutterJSONMethodCodec : NSObject <FlutterMethodCodec>
     [BaseType(typeof(NSObject))]
-    interface FlutterJSONMethodCodec : IFlutterMethodCodec
+    interface FlutterJSONMethodCodec : FlutterMethodCodec
     {
     }
 
     // @interface FlutterStandardMethodCodec : NSObject <FlutterMethodCodec>
     [BaseType(typeof(NSObject))]
-    interface FlutterStandardMethodCodec : IFlutterMethodCodec
+    interface FlutterStandardMethodCodec : FlutterMethodCodec
     {
         // +(instancetype _Nonnull)codecWithReaderWriter:(FlutterStandardReaderWriter * _Nonnull)readerWriter;
         [Static]
@@ -371,7 +371,7 @@ namespace Flutnet.Interop
 
     // @interface FlutterBasicMessageChannel : NSObject
     [BaseType(typeof(NSObject))]
-    interface FlutterBasicMessageChannel : IFlutterBinaryMessenger
+    interface FlutterBasicMessageChannel : FlutterBinaryMessenger
     {
         // +(instancetype _Nonnull)messageChannelWithName:(NSString * _Nonnull)name binaryMessenger:(NSObject<FlutterBinaryMessenger> * _Nonnull)messenger;
         [Static]
@@ -412,7 +412,7 @@ namespace Flutnet.Interop
 
     // @interface FlutterMethodChannel : NSObject
     [BaseType(typeof(NSObject))]
-    interface FlutterMethodChannel : IFlutterBinaryMessenger
+    interface FlutterMethodChannel : FlutterBinaryMessenger
     {
         // +(instancetype _Nonnull)methodChannelWithName:(NSString * _Nonnull)name binaryMessenger:(NSObject<FlutterBinaryMessenger> * _Nonnull)messenger;
         [Static]
@@ -471,7 +471,7 @@ namespace Flutnet.Interop
 
     // @interface FlutterEventChannel : NSObject
     [BaseType(typeof(NSObject))]
-    interface FlutterEventChannel : IFlutterBinaryMessenger
+    interface FlutterEventChannel : FlutterBinaryMessenger
     {
         // +(instancetype _Nonnull)eventChannelWithName:(NSString * _Nonnull)name binaryMessenger:(NSObject<FlutterBinaryMessenger> * _Nonnull)messenger;
         [Static]
@@ -812,7 +812,7 @@ namespace Flutnet.Interop
 
     // @interface FlutterAppDelegate : UIResponder <UIApplicationDelegate, FlutterPluginRegistry, FlutterAppLifeCycleProvider>
     [BaseType(typeof(UIResponder))]
-    interface FlutterAppDelegate : IUIApplicationDelegate, IFlutterPluginRegistry, IFlutterAppLifeCycleProvider
+    interface FlutterAppDelegate : IUIApplicationDelegate, FlutterPluginRegistry, FlutterAppLifeCycleProvider
     {
         // @property (nonatomic, strong) UIWindow * window;
         [Export("window", ArgumentSemantic.Strong)]
@@ -892,7 +892,7 @@ namespace Flutnet.Interop
     // @interface FlutterEngine : NSObject <FlutterTextureRegistry, FlutterPluginRegistry>
     [BaseType(typeof(NSObject))]
     [DisableDefaultCtor]
-    interface FlutterEngine : IFlutterTextureRegistry, IFlutterPluginRegistry
+    interface FlutterEngine : FlutterTextureRegistry, FlutterPluginRegistry
     {
         // -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)labelPrefix;
         [Export("initWithName:")]
@@ -903,11 +903,11 @@ namespace Flutnet.Interop
         IntPtr Constructor(string labelPrefix, [NullAllowed] FlutterDartProject project);
 
         // -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)labelPrefix project:(FlutterDartProject * _Nullable)project allowHeadlessExecution:(BOOL)allowHeadlessExecution;
-        [Export ("initWithName:project:allowHeadlessExecution:")]
+        [Export("initWithName:project:allowHeadlessExecution:")]
         IntPtr Constructor(string labelPrefix, [NullAllowed] FlutterDartProject project, bool allowHeadlessExecution);
 
         // -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)labelPrefix project:(FlutterDartProject * _Nullable)project allowHeadlessExecution:(BOOL)allowHeadlessExecution restorationEnabled:(BOOL)restorationEnabled __attribute__((objc_designated_initializer));
-        [Export ("initWithName:project:allowHeadlessExecution:restorationEnabled:")]
+        [Export("initWithName:project:allowHeadlessExecution:restorationEnabled:")]
         [DesignatedInitializer]
         IntPtr Constructor(string labelPrefix, [NullAllowed] FlutterDartProject project, bool allowHeadlessExecution, bool restorationEnabled);
 
@@ -920,7 +920,7 @@ namespace Flutnet.Interop
         bool Run([NullAllowed] string entrypoint);
 
         // -(BOOL)runWithEntrypoint:(NSString * _Nullable)entrypoint initialRoute:(NSString * _Nullable)initialRoute;
-        [Export ("runWithEntrypoint:initialRoute:")]
+        [Export("runWithEntrypoint:initialRoute:")]
         bool Run([NullAllowed] string entrypoint, [NullAllowed] string initialRoute);
 
         // -(BOOL)runWithEntrypoint:(NSString * _Nullable)entrypoint libraryURI:(NSString * _Nullable)uri;
@@ -948,7 +948,7 @@ namespace Flutnet.Interop
         FlutterMethodChannel NavigationChannel { get; }
 
         // @property (readonly, nonatomic) FlutterMethodChannel * _Nonnull restorationChannel;
-        [Export ("restorationChannel")]
+        [Export("restorationChannel")]
         FlutterMethodChannel RestorationChannel { get; }
 
         // @property (readonly, nonatomic) FlutterMethodChannel * _Nonnull platformChannel;
@@ -972,7 +972,7 @@ namespace Flutnet.Interop
         FlutterBasicMessageChannel SettingsChannel { get; }
 
         // @property (readonly, nonatomic) FlutterBasicMessageChannel * _Nonnull keyEventChannel;
-        [Export ("keyEventChannel")]
+        [Export("keyEventChannel")]
         FlutterBasicMessageChannel KeyEventChannel { get; }
 
         // @property (readonly, nonatomic) NSURL * _Nullable observatoryUrl;
@@ -993,17 +993,17 @@ namespace Flutnet.Interop
     }
 
     // @interface FlutterEngineGroup : NSObject
-    [BaseType (typeof(NSObject))]
+    [BaseType(typeof(NSObject))]
     [DisableDefaultCtor]
     interface FlutterEngineGroup
     {
         // -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)name project:(FlutterDartProject * _Nullable)project __attribute__((objc_designated_initializer));
-        [Export ("initWithName:project:")]
+        [Export("initWithName:project:")]
         [DesignatedInitializer]
         IntPtr Constructor(string name, [NullAllowed] FlutterDartProject project);
 
         // -(FlutterEngine * _Nonnull)makeEngineWithEntrypoint:(NSString * _Nullable)entrypoint libraryURI:(NSString * _Nullable)libraryURI;
-        [Export ("makeEngineWithEntrypoint:libraryURI:")]
+        [Export("makeEngineWithEntrypoint:libraryURI:")]
         FlutterEngine MakeEngine([NullAllowed] string entrypoint, [NullAllowed] string libraryURI);
     }
 
@@ -1019,11 +1019,11 @@ namespace Flutnet.Interop
         IntPtr Constructor(string labelPrefix, FlutterDartProject projectOrNil);
 
         // -(instancetype)initWithName:(NSString *)labelPrefix project:(FlutterDartProject *)projectOrNil allowHeadlessExecution:(BOOL)allowHeadlessExecution;
-        [Export ("initWithName:project:allowHeadlessExecution:")]
+        [Export("initWithName:project:allowHeadlessExecution:")]
         IntPtr Constructor(string labelPrefix, FlutterDartProject projectOrNil, bool allowHeadlessExecution);
 
         // -(instancetype)initWithName:(NSString *)labelPrefix project:(FlutterDartProject *)projectOrNil allowHeadlessExecution:(BOOL)allowHeadlessExecution restorationEnabled:(BOOL)restorationEnabled __attribute__((objc_designated_initializer));
-        [Export ("initWithName:project:allowHeadlessExecution:restorationEnabled:")]
+        [Export("initWithName:project:allowHeadlessExecution:restorationEnabled:")]
         [DesignatedInitializer]
         IntPtr Constructor(string labelPrefix, FlutterDartProject projectOrNil, bool allowHeadlessExecution, bool restorationEnabled);
     }
@@ -1110,7 +1110,7 @@ namespace Flutnet.Interop
 
     // @interface FlutterViewController : UIViewController <FlutterTextureRegistry, FlutterPluginRegistry>
     [BaseType(typeof(UIViewController))]
-    interface FlutterViewController : IFlutterTextureRegistry, IFlutterPluginRegistry
+    interface FlutterViewController : FlutterTextureRegistry, FlutterPluginRegistry
     {
         // -(instancetype _Nonnull)initWithEngine:(FlutterEngine * _Nonnull)engine nibName:(NSString * _Nullable)nibName bundle:(NSBundle * _Nullable)nibBundle __attribute__((objc_designated_initializer));
         [Export("initWithEngine:nibName:bundle:")]
