@@ -2,15 +2,15 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <Reference Include="Flutnet.Interop.iOS">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\Xamarin.iOS10\Debug\Flutnet.Interop.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\lib\net7.0-ios\Debug\Flutnet.Interop.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <Reference Include="Flutnet.Interop.iOS">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\Xamarin.iOS10\Release\Flutnet.Interop.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\lib\net7.0-ios\Release\Flutnet.Interop.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <!-- The following two groups must be excluded if we decide not to pack .xcframeworks -->
+  <!-- Include any other resources or native references here -->
   <ItemGroup Condition="'$(Configuration)' == 'Debug' And '$(OutputType)' == 'Exe'">
     <NativeReference Include="$(MSBuildThisFileDirectory)../content/Debug/Flutter.xcframework">
       <Kind>Framework</Kind>

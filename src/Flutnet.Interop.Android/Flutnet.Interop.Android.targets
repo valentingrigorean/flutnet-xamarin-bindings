@@ -2,12 +2,15 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <Reference Include="Flutnet.Interop.Android">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\MonoAndroid\Debug\Flutnet.Interop.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\lib\net7.0-android\Debug\Flutnet.Interop.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <Reference Include="Flutnet.Interop.Android">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\MonoAndroid\Release\Flutnet.Interop.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\lib\net7.0-android\Release\Flutnet.Interop.Android.dll</HintPath>
     </Reference>
+    <AndroidAarLibrary Include="$(MSBuildThisFileDirectory)..\lib\net7.0-android\Release\Flutnet.Interop.Android.aar">
+      <IsAppExtension>false</IsAppExtension>
+    </AndroidAarLibrary>
   </ItemGroup>
 </Project>

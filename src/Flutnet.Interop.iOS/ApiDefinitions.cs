@@ -31,9 +31,9 @@ namespace Flutnet.Interop
 
         // extern const NSObject * _Nonnull FlutterMethodNotImplemented;
         [Field("FlutterMethodNotImplemented", "__Internal")]
-        [Internal]
+        // [Internal]
         //NSObject FlutterMethodNotImplemented { get; }
-        IntPtr FlutterMethodNotImplemented { get; }
+        IntPtr FlutterMethodNotImplementedPtr { get; }
     }
 
     // typedef void (^FlutterBinaryReply)(NSData * _Nullable);

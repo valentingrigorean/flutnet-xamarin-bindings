@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Flutnet.Interop.Android</id>
-    <version>3.13.2</version>
+    <version>3.13.6</version>
     <title>Flutnet.Interop.Android</title>
     <authors>Novagem Solutions S.r.l.</authors>
     <owners></owners>
@@ -16,17 +16,18 @@
     <tags>Flutnet Xamarin Android Xamarin.Android Flutter</tags>
     <icon>images\icon.png</icon>
     <dependencies>
-      <group targetFramework="MonoAndroid">
-        <!-- <dependency id="Flutnet.Interop.Java8" version="2.5.1" /> -->
-        <dependency id="Xamarin.AndroidX.Lifecycle.Common" version="2.5.1" />
-        <dependency id="Xamarin.AndroidX.Lifecycle.Runtime" version="2.5.1" />
-        <dependency id="Xamarin.AndroidX.Fragment" version="1.5.1" />
+      <group targetFramework="net7.0-android">
+        <dependency id="Xamarin.AndroidX.Lifecycle.Common" version="2.6.2.1" />
+        <dependency id="Xamarin.AndroidX.Lifecycle.Runtime" version="2.6.2.1" />
+        <dependency id="Xamarin.AndroidX.Fragment" version="1.6.1.1" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="bin/ReleaseWithDebugNativeRef/Flutnet.Interop.dll" target="lib/MonoAndroid/Debug/Flutnet.Interop.dll" />
-    <file src="bin/Release/Flutnet.Interop.dll" target="lib/MonoAndroid/Release/Flutnet.Interop.dll" />
+    <file src="bin/Debug/net7.0-android/Flutnet.Interop.Android.dll" target="lib/net7.0-android/Debug/Flutnet.Interop.Android.dll" />
+    <file src="bin/Debug/net7.0-android/Flutnet.Interop.Android.aar" target="lib/net7.0-android/Debug/Flutnet.Interop.Android.aar" />
+    <file src="bin/Release/net7.0-android/Flutnet.Interop.Android.dll" target="lib/net7.0-android/Release/Flutnet.Interop.Android.dll" />
+    <file src="bin/Release/net7.0-android/Flutnet.Interop.Android.aar" target="lib/net7.0-android/Release/Flutnet.Interop.Android.aar" />
     <file src="Flutnet.Interop.Android.targets" target="build/Flutnet.Interop.Android.targets" />
     <file src="../../assets/images/flutnet_logo_128x128_trasp.png" target="images/icon.png" />
     <file src="../../LICENSE.LGPL3" target="LICENSE.LGPL3" />
