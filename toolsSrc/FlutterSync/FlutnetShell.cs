@@ -42,7 +42,7 @@ namespace FlutterSync
             //Command command = Command.Run("cmd", new[] { "/c", commandWithArguments },
             //    options => { options.WorkingDirectory(workingDir).ThrowOnError(); });
 
-            Command command = Command.Run("cmd",
+            var command = Command.Run("cmd",
                 options: options =>
                 {
                     options.WorkingDirectory(workingDir);
@@ -70,7 +70,7 @@ namespace FlutterSync
 
             // Rimossa gestione escape da quando si usa Medallion Shell Library
             //string escapedArgs = commandWithArguments.Replace("\"", "\\\"");
-            string escapedArgs = commandWithArguments;
+            var escapedArgs = commandWithArguments;
 
             // First of all we need to detect a suitable shell:
             // both /bin/bash and /bin/zsh have the option -c.
@@ -114,7 +114,7 @@ namespace FlutterSync
                 throw new InvalidOperationException("Unable to detect a suitable shell on this machine (neither Bash or Z shell): Cannot execute the command.");
             }
 
-            Command command = Command.Run(executable, new[] { "-c", arguments },
+            var command = Command.Run(executable, new[] { "-c", arguments },
                 options => { options.WorkingDirectory(workingDir).ThrowOnError(); });
             if (verbose)
             {
@@ -166,14 +166,14 @@ namespace FlutterSync
             {
                 if (OperatingSystem.IsMacOS())
                 {
-                    CommandResult result = RunInMacOsShell($"which {executable}", Environment.CurrentDirectory);
+                    var result = RunInMacOsShell($"which {executable}", Environment.CurrentDirectory);
                     path = result.StandardOutput.Split(new[] { Environment.NewLine }, 2, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
                     return true;
                 }
 
                 if (OperatingSystem.IsWindows())
                 {
-                    CommandResult result = RunInWindowsShell($"where {executable}", Environment.CurrentDirectory);
+                    var result = RunInWindowsShell($"where {executable}", Environment.CurrentDirectory);
                     path = result.StandardOutput.Split(new[] { Environment.NewLine }, 2, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
                     return true;
                 }
@@ -192,14 +192,14 @@ namespace FlutterSync
         /// </summary>
         private static string GetCurrentLoginShell()
         {
-            Command command = Command.Run("/bin/sh",
+            var command = Command.Run("/bin/sh",
                 arguments: new object[] { "-c", "echo $SHELL" },
                 options: options => { options.ThrowOnError(); });
 
             try
             {
-                CommandResult result = command.Result;
-                string path = result.StandardOutput.Split(new[] { Environment.NewLine }, 2, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+                var result = command.Result;
+                var path = result.StandardOutput.Split(new[] { Environment.NewLine }, 2, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
                 return path;
             }
             catch (Exception)
@@ -213,14 +213,14 @@ namespace FlutterSync
         /// </summary>
         private static string GetDefaultLoginShell()
         {
-            Command command = Command.Run("/bin/sh",
+            var command = Command.Run("/bin/sh",
                 arguments: new object[] { "-c", "dscl . -read ~/ UserShell | sed 's/UserShell: //'" },
                 options: options => { options.ThrowOnError(); });
 
             try
             {
-                CommandResult result = command.Result;
-                string path = result.StandardOutput.Split(new[] { Environment.NewLine }, 2, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+                var result = command.Result;
+                var path = result.StandardOutput.Split(new[] { Environment.NewLine }, 2, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
                 return path;
             }
             catch (Exception)
@@ -235,25 +235,22 @@ namespace FlutterSync
         /// <returns></returns>
         private static string GetShellConfigurationFile(string shell)
         {
-            FileInfo fi = new FileInfo(shell);
+            var fi = new FileInfo(shell);
             if (string.Equals(fi.Name, "zsh", StringComparison.OrdinalIgnoreCase))
             {
-                string config = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".zshrc");
-                //string config = "~/.zshrc";
-
+                // Corrected to use the home directory
+                var config = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".zshrc");
                 return config;
             }
-            else if (string.Equals(fi.Name, "bash", StringComparison.OrdinalIgnoreCase))
-            {
-                string config1 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".bashrc");
-                //string config1 = "~/.bashrc";
 
-                string config2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".bash_profile");
-                //string config2 = "~/.bash_profile";
+            if (!string.Equals(fi.Name, "bash", StringComparison.OrdinalIgnoreCase)) return null;
+            // Corrected to use the home directory
+            var config1 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".bashrc");
+            var config2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".bash_profile");
 
-                return File.Exists(config2) ? config2 : config1;
-            }
-            return null;
+            // Check if .bash_profile exists; if not, use .bashrc
+            return File.Exists(config2) ? config2 : config1;
+            // Return null if neither zsh nor bash
         }
     }
 }

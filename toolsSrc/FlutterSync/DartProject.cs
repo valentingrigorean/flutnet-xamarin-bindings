@@ -123,7 +123,7 @@ namespace FlutterSync
             // Check if the folder represents a real Flutter project
 
             // 1) It must contains a pubspec.yaml file
-            FileInfo[] files = _workingDir.GetFiles(PubspecFilename);
+            var files = _workingDir.GetFiles(PubspecFilename);
             if (files.Length == 0)
                 throw new ArgumentException($"The specified directory does not contain a '{PubspecFilename}'' file.");
             _pubspecFile = files[0];
@@ -135,7 +135,7 @@ namespace FlutterSync
             _metadataFile = files[0];
 
             // 3) It must contains a lib folder
-            DirectoryInfo[] dirs = _workingDir.GetDirectories("lib");
+            var dirs = _workingDir.GetDirectories("lib");
             if (dirs.Length == 0)
                 throw new ArgumentException("The specified directory does not contain a 'lib' folder.");
             _libFolder = dirs[0];
@@ -149,7 +149,7 @@ namespace FlutterSync
         {
             // YAML parser
             _pubspecStream = new YamlStream();
-            using (StreamReader reader = _pubspecFile.OpenText())
+            using (var reader = _pubspecFile.OpenText())
             {
                 _pubspecStream.Load(reader);
             }
@@ -188,7 +188,7 @@ namespace FlutterSync
         {
             // YAML parser
             _metadataStream = new YamlStream();
-            using (StreamReader reader = _metadataFile.OpenText())
+            using (var reader = _metadataFile.OpenText())
             {
                 _metadataStream.Load(reader);
             }
@@ -213,7 +213,7 @@ namespace FlutterSync
 
         private void LoadProjectInfo()
         {
-            string projectType = _metadataDocument.GetScalarValue(new[] { "project_type" });
+            var projectType = _metadataDocument.GetScalarValue(new[] { "project_type" });
             switch (projectType)
             {
                 case "app":
@@ -241,51 +241,51 @@ namespace FlutterSync
 
         private void ValidatePubspecFile()
         {
-            YamlDocument doc = _pubspecDocument;
-            DartProjectType type = Type;
+            var doc = _pubspecDocument;
+            var type = Type;
 
             // Check if "name" exists
-            YamlScalarNode name = doc.GetScalarNode(new[] { NameYamlNode });
+            var name = doc.GetScalarNode(new[] { NameYamlNode });
             if (name == null)
                 throw new ArgumentException($"Missing '{NameYamlNode}' node inside '{PubspecFilename}' file.");
 
             // Check if "description" exists
-            YamlScalarNode description = doc.GetScalarNode(new[] { DescriptionYamlNode });
+            var description = doc.GetScalarNode(new[] { DescriptionYamlNode });
             if (description == null)
                 throw new ArgumentException($"Missing '{DescriptionYamlNode}' node inside '{PubspecFilename}' file.");
 
             // Check if "author" exists
-            YamlScalarNode author = doc.GetScalarNode(new[] { AuthorYamlNode });
+            var author = doc.GetScalarNode(new[] { AuthorYamlNode });
             if (author == null && type == DartProjectType.Package)
                 throw new ArgumentException($"Missing '{AuthorYamlNode}' node inside '{PubspecFilename}' file.");
 
             // Check if "homepage" exists
-            YamlScalarNode homepage = doc.GetScalarNode(new[] { HomepageYamlNode });
+            var homepage = doc.GetScalarNode(new[] { HomepageYamlNode });
             if (homepage == null && type == DartProjectType.Package)
                 throw new ArgumentException($"Missing '{HomepageYamlNode}' node inside '{PubspecFilename}' file.");
 
             // Check if "version" exists
-            YamlScalarNode version = doc.GetScalarNode(new[] { VersionYamlNode });
+            var version = doc.GetScalarNode(new[] { VersionYamlNode });
             if (version == null)
                 throw new ArgumentException($"Missing '{VersionYamlNode}' node inside '{PubspecFilename}' file.");
 
             // Check if "dependencies" exists
-            YamlMappingNode dependencies = doc.GetMappingNode(new[] { DependenciesYaml });
+            var dependencies = doc.GetMappingNode(new[] { DependenciesYaml });
             if (dependencies == null)
                 throw new ArgumentException($"Missing '{DependenciesYaml}' node inside '{PubspecFilename}' file.");
 
             // Check if "dev_dependencies" exists
-            YamlMappingNode devDependencies = doc.GetMappingNode(new[] { DevDependenciesYaml });
+            var devDependencies = doc.GetMappingNode(new[] { DevDependenciesYaml });
             if (devDependencies == null)
                 throw new ArgumentException($"Missing '{DevDependenciesYaml}' node inside '{PubspecFilename}' file.");
 
             // Check if "environment" exists
-            YamlMappingNode environment = doc.GetMappingNode(new[] { EnvironmentYamlNode });
+            var environment = doc.GetMappingNode(new[] { EnvironmentYamlNode });
             if (environment == null)
                 throw new ArgumentException($"Missing '{EnvironmentYamlNode}' node inside '{PubspecFilename}' file.");
 
             // Check if "sdk" exists
-            YamlScalarNode sdk = doc.GetScalarNode(new[] { EnvironmentYamlNode, SdkYamlNode });
+            var sdk = doc.GetScalarNode(new[] { EnvironmentYamlNode, SdkYamlNode });
             if (sdk == null)
                 throw new ArgumentException($"Missing '{SdkYamlNode}' node inside '{PubspecFilename}' file.");
         }
@@ -337,20 +337,20 @@ namespace FlutterSync
             // <MODULE_FOLDER>\build\host\outputs\repo\com\example\hello_world\flutter_debug\1.0\flutter_debug-1.0.aar
 
             // <MODULE_FOLDER>\build\host\outputs\repo\
-            string repoRootFolder = Path.Combine(flutterFolder, "build", "host", "outputs", "repo");
+            var repoRootFolder = Path.Combine(flutterFolder, "build", "host", "outputs", "repo");
 
             // Find the 'androidPackage' info from the pubspec.yaml file
-            string package = pubspecFile.GetScalarValue(new [] { "flutter", "module", "androidPackage" });
+            var package = pubspecFile.GetScalarValue(new [] { "flutter", "module", "androidPackage" });
 
             // <MODULE_FOLDER>\build\host\outputs\repo\com\example\hello_world\
-            string packageRootFolder = repoRootFolder;
-            string[] packageFolders = string.IsNullOrEmpty(package) ? new string[0] : package.Split(".");
-            foreach (string folder in packageFolders)
+            var packageRootFolder = repoRootFolder;
+            var packageFolders = string.IsNullOrEmpty(package) ? new string[0] : package.Split(".");
+            foreach (var folder in packageFolders)
             {
                 packageRootFolder = Path.Combine(packageRootFolder, folder);
             }
 
-            string version = "1.0";
+            var version = "1.0";
             string build;
             switch (buildConfig)
             {
@@ -368,7 +368,7 @@ namespace FlutterSync
             }
 
             // <MODULE_FOLDER>\build\host\outputs\repo\com\example\hello_world\flutter_debug\1.0\flutter_debug-1.0.aar
-            string path = Path.Combine(packageRootFolder, $"flutter_{build}", version, $"flutter_{build}-{version}.aar");
+            var path = Path.Combine(packageRootFolder, $"flutter_{build}", version, $"flutter_{build}-{version}.aar");
             return path;
         }
 
@@ -408,10 +408,10 @@ namespace FlutterSync
 
 
             // <MODULE_FOLDER>\build\ios\framework\
-            string frameworkRootFolder = Path.Combine(flutterFolder, "build", "ios", "framework");
+            var frameworkRootFolder = Path.Combine(flutterFolder, "build", "ios", "framework");
 
             // Find the 'iosBundleIdentifier' info from the pubspec.yaml file
-            string bundle = pubspecFile.GetScalarValue(new [] { "flutter", "module", "iosBundleIdentifier" });
+            var bundle = pubspecFile.GetScalarValue(new [] { "flutter", "module", "iosBundleIdentifier" });
 
             string build;
             switch (buildConfig)
@@ -430,7 +430,7 @@ namespace FlutterSync
             }
 
             // <MODULE_FOLDER>\build\ios\Debug\App.framework
-            string path = Path.Combine(frameworkRootFolder, build, xcframework ? "App.xcframework" : "App.framework");
+            var path = Path.Combine(frameworkRootFolder, build, xcframework ? "App.xcframework" : "App.framework");
             return path;
         }
 

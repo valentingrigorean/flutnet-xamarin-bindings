@@ -13,35 +13,33 @@ namespace FlutterSync
         /// </summary>
         public static FlutterVersion GetVersion(bool verbose = false)
         {
-            CommandResult result = FlutnetShell.RunCommand("flutter --version --no-version-check", Environment.CurrentDirectory, verbose);
+            var result = FlutnetShell.RunCommand("flutter --version --no-version-check", Environment.CurrentDirectory, verbose);
 
-            FlutterVersion version = new FlutterVersion();
+            var version = new FlutterVersion();
 
             int index;
-            using (StringReader reader = new StringReader(result.StandardOutput))
+            using var reader = new StringReader(result.StandardOutput);
+            var versionLine = reader.ReadLine();
+            var parts = versionLine
+                .Replace("Flutter", string.Empty, StringComparison.InvariantCultureIgnoreCase)
+                .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length > 0)
             {
-                string versionLine = reader.ReadLine();
-                string[] parts = versionLine
-                    .Replace("Flutter", string.Empty, StringComparison.InvariantCultureIgnoreCase)
-                    .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-                if (parts.Length > 0)
-                {
-                    version.Version = parts[0].Trim();
-                }
+                version.Version = parts[0].Trim();
+            }
 
-                string frameworkRevLine = reader.ReadLine();
-                index = frameworkRevLine.IndexOf("revision ", StringComparison.InvariantCultureIgnoreCase);
-                if (index != -1)
-                {
-                    version.FrameworkRev = frameworkRevLine.Substring(index + 9, 10).Trim();
-                }
+            var frameworkRevLine = reader.ReadLine();
+            index = frameworkRevLine.IndexOf("revision ", StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1)
+            {
+                version.FrameworkRev = frameworkRevLine.Substring(index + 9, 10).Trim();
+            }
 
-                string engineRevLine = reader.ReadLine();
-                index = engineRevLine.IndexOf("revision ", StringComparison.InvariantCultureIgnoreCase);
-                if (index != -1)
-                {
-                    version.EngineRev = engineRevLine.Substring(index + 9).Trim();
-                }
+            var engineRevLine = reader.ReadLine();
+            index = engineRevLine.IndexOf("revision ", StringComparison.InvariantCultureIgnoreCase);
+            if (index != -1)
+            {
+                version.EngineRev = engineRevLine.Substring(index + 9).Trim();
             }
 
             return version;
@@ -90,7 +88,7 @@ namespace FlutterSync
         /// </summary>
         public static void BuildAndroidArchive(string projectFolder, FlutterModuleBuildConfig buildConfig, bool verbose = false)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("flutter build aar ");
 
             if (buildConfig != FlutterModuleBuildConfig.Default)
@@ -112,7 +110,7 @@ namespace FlutterSync
         /// </summary>
         public static void BuildIosFramework(string projectFolder, FlutterModuleBuildConfig buildConfig, bool verbose = false)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("flutter build ios-framework ");
 
             if (buildConfig != FlutterModuleBuildConfig.Default)
@@ -133,7 +131,7 @@ namespace FlutterSync
         /// </summary>
         public static DartProject CreatePackage(string workingDir, string name, string description = null, bool verbose = false)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("flutter create -t package ");
             if (!string.IsNullOrEmpty(description))
                 sb.Append($"--description {description.Quoted()} ");
@@ -149,7 +147,7 @@ namespace FlutterSync
         /// </summary>
         public static DartProject CreateModule(string workingDir, string name, string description = null, string organization = null, bool verbose = false)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("flutter create -t module ");
             if (!string.IsNullOrEmpty(description))
                 sb.Append($"--description {description.Quoted()} ");
@@ -167,7 +165,7 @@ namespace FlutterSync
         /// </summary>
         public static DartProject CreateApp(string workingDir, string name, string description = null, string organization = null, bool verbose = false)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("flutter create -t app ");
             if (!string.IsNullOrEmpty(description))
                 sb.Append($"--description {description.Quoted()} ");

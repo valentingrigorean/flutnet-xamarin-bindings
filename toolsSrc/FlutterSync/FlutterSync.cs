@@ -15,9 +15,8 @@ namespace FlutterSync
             // NOTE: We suppose that the program executable is located under <repository root>/tools
             //       while the native references will be stored under <repository root>/assets/xamarin-native-references
             DefaultTargetDirectory = "../assets/xamarin-native-references";
-            DefaultGradleCacheDirectory = OperatingSystem.IsMacOS() 
-                    ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".gradle", "caches", "modules-2", "files-2.1", "io.flutter") 
-                    : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".gradle", "caches", "modules-2", "files-2.1", "io.flutter");
+            DefaultGradleCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                ".gradle", "caches", "modules-2", "files-2.1", "io.flutter");
         }
 
         public static int Go(Options options)
@@ -28,42 +27,43 @@ namespace FlutterSync
                 return ReturnCodes.Success;
             }
 
-            string targetFolder = !string.IsNullOrEmpty(options.TargetDirectory)
+            var targetFolder = !string.IsNullOrEmpty(options.TargetDirectory)
                 ? Path.GetFullPath(options.TargetDirectory)
                 : DefaultTargetDirectory;
 
-            string targetFolderAndroid = Path.Combine(targetFolder, "Android");
-            string targetFolderAndroidDebug = Path.Combine(targetFolderAndroid, "debug");
-            string targetFolderAndroidRelease = Path.Combine(targetFolderAndroid, "release");
+            var targetFolderAndroid = Path.Combine(targetFolder, "Android");
+            var targetFolderAndroidDebug = Path.Combine(targetFolderAndroid, "debug");
+            var targetFolderAndroidRelease = Path.Combine(targetFolderAndroid, "release");
 
-            string tmpTargetAndroidOfficial = Path.Combine(targetFolderAndroid, "official_repo");
+            var tmpTargetAndroidOfficial = Path.Combine(targetFolderAndroid, "official_repo");
 
-            string targetFolderIos = Path.Combine(targetFolder, "iOS");
-            string targetFolderIosDebug = Path.Combine(targetFolderIos, "debug");
-            string targetFolderIosRelease = Path.Combine(targetFolderIos, "release");
+            var targetFolderIos = Path.Combine(targetFolder, "iOS");
+            var targetFolderIosDebug = Path.Combine(targetFolderIos, "debug");
+            var targetFolderIosRelease = Path.Combine(targetFolderIos, "release");
 
-            string gradleCacheFolder = !string.IsNullOrEmpty(options.GradleCacheDirectory)
+            var gradleCacheFolder = !string.IsNullOrEmpty(options.GradleCacheDirectory)
                 ? Path.GetFullPath(options.GradleCacheDirectory)
                 : DefaultGradleCacheDirectory;
 
-            string tmpFolder = Path.GetTempPath();
-            string tmpModuleName = $"module_{Guid.NewGuid().ToString("N").Substring(0, 10)}";
-            string tmpModulePath = Path.Combine(tmpFolder, tmpModuleName);
+            var tmpFolder = Path.GetTempPath();
+            var tmpModuleName = $"module_{Guid.NewGuid().ToString("N").Substring(0, 10)}";
+            var tmpModulePath = Path.Combine(tmpFolder, tmpModuleName);
 
             try
             {
                 Console.WriteLine("Detecting Flutter version...");
-                FlutterVersion version = FlutterTools.GetVersion();
+                var version = FlutterTools.GetVersion();
                 Console.WriteLine("Done (current version is {0}).", version.Version);
 
-                Console.WriteLine("Creating temporary Flutter module..."); 
-                DartProject project = FlutterTools.CreateModule(tmpFolder, tmpModuleName); 
+                Console.WriteLine("Creating temporary Flutter module...");
+                var project = FlutterTools.CreateModule(tmpFolder, tmpModuleName);
                 Console.WriteLine("Done.");
 
                 if (!options.NoAndroid)
                 {
                     Console.WriteLine("Building Android archives...");
-                    FlutterTools.BuildAndroidArchive(tmpModulePath, FlutterModuleBuildConfig.Debug | FlutterModuleBuildConfig.Release);
+                    FlutterTools.BuildAndroidArchive(tmpModulePath,
+                        FlutterModuleBuildConfig.Debug | FlutterModuleBuildConfig.Release);
                     Console.WriteLine("Done.");
 
                     if (Directory.Exists(targetFolderAndroid))
@@ -77,9 +77,9 @@ namespace FlutterSync
                     Console.WriteLine("Copying Android archives into destination folder...");
 
                     Directory.CreateDirectory(tmpTargetAndroidOfficial);
-                    DirectoryInfo gradleCacheDir = new DirectoryInfo(gradleCacheFolder);
+                    var gradleCacheDir = new DirectoryInfo(gradleCacheFolder);
                     foreach (var gradleCacheArchDir in gradleCacheDir.EnumerateDirectories()
-                        .Where(di => !di.Name.Contains("profile", StringComparison.OrdinalIgnoreCase)))
+                                 .Where(di => !di.Name.Contains("profile", StringComparison.OrdinalIgnoreCase)))
                     {
                         var dir = gradleCacheArchDir.GetDirectories($"*-{version.EngineRev}*")[0];
                         foreach (var subdir in dir.EnumerateDirectories())
@@ -101,100 +101,91 @@ namespace FlutterSync
 
                     Console.WriteLine("Configuring Android archives for Xamarin bindings...");
 
-                    foreach (string filename in Directory.EnumerateFiles(tmpTargetAndroidOfficial, "*_debug-*.jar"))
+                    foreach (var filename in Directory.EnumerateFiles(tmpTargetAndroidOfficial, "*_debug-*.jar"))
                     {
-                        FileInfo fi = new FileInfo(filename);
+                        var fi = new FileInfo(filename);
                         if (fi.Name.StartsWith("flutter_embedding"))
                         {
                             fi.CopyTo(Path.Combine(targetFolderAndroidDebug, "flutter_embedding.jar"));
                         }
                         else
                         {
-                            int index = fi.Name.IndexOf("_debug-", StringComparison.InvariantCultureIgnoreCase);
+                            var index = fi.Name.IndexOf("_debug-", StringComparison.InvariantCultureIgnoreCase);
                             // https://docs.microsoft.com/en-US/xamarin/android/app-fundamentals/cpu-architectures?tabs=windows
                             // arm64_v8a must become arm64-v8a
                             // armeabi_v7a must become armeabi-v7a
                             // x86_64 must not change
-                            string arch = fi.Name.Substring(0, index).Replace("_v", "-v");
-                            string libFolder = Path.Combine(targetFolderAndroidDebug, "lib", arch);
+                            var arch = fi.Name.Substring(0, index).Replace("_v", "-v");
+                            var libFolder = Path.Combine(targetFolderAndroidDebug, "lib", arch);
                             Directory.CreateDirectory(libFolder);
 
-                            using (ZipInputStream stream = new ZipInputStream(fi.OpenRead()))
+                            using var stream = new ZipInputStream(fi.OpenRead());
+                            ZipEntry entry;
+                            while ((entry = stream.GetNextEntry()) != null)
                             {
-                                ZipEntry entry;
-                                while ((entry = stream.GetNextEntry()) != null)
-                                {
-                                    string entryFilename = Path.GetFileName(entry.Name);
-                                    if (string.IsNullOrEmpty(entryFilename) ||
-                                        !string.Equals(Path.GetExtension(entryFilename), ".so", StringComparison.InvariantCultureIgnoreCase))
-                                        continue;
+                                var entryFilename = Path.GetFileName(entry.Name);
+                                if (string.IsNullOrEmpty(entryFilename) ||
+                                    !string.Equals(Path.GetExtension(entryFilename), ".so",
+                                        StringComparison.InvariantCultureIgnoreCase))
+                                    continue;
 
-                                    using (FileStream streamWriter = File.Create(Path.Combine(libFolder, entryFilename)))
+                                using var streamWriter = File.Create(Path.Combine(libFolder, entryFilename));
+                                var data = new byte[2048];
+                                while (true)
+                                {
+                                    var size = stream.Read(data, 0, data.Length);
+                                    if (size > 0)
                                     {
-                                        int size;
-                                        byte[] data = new byte[2048];
-                                        while (true)
-                                        {
-                                            size = stream.Read(data, 0, data.Length);
-                                            if (size > 0)
-                                            {
-                                                streamWriter.Write(data, 0, size);
-                                            }
-                                            else
-                                            {
-                                                break;
-                                            }
-                                        }
+                                        streamWriter.Write(data, 0, size);
+                                    }
+                                    else
+                                    {
+                                        break;
                                     }
                                 }
                             }
                         }
                     }
 
-                    foreach (string filename in Directory.EnumerateFiles(tmpTargetAndroidOfficial, "*_release-*.jar"))
+                    foreach (var filename in Directory.EnumerateFiles(tmpTargetAndroidOfficial, "*_release-*.jar"))
                     {
-                        FileInfo fi = new FileInfo(filename);
+                        var fi = new FileInfo(filename);
                         if (fi.Name.StartsWith("flutter_embedding"))
                         {
                             fi.CopyTo(Path.Combine(targetFolderAndroidRelease, "flutter_embedding.jar"));
                         }
                         else
                         {
-                            int index = fi.Name.IndexOf("_release-", StringComparison.InvariantCultureIgnoreCase);
+                            var index = fi.Name.IndexOf("_release-", StringComparison.InvariantCultureIgnoreCase);
                             // https://docs.microsoft.com/en-US/xamarin/android/app-fundamentals/cpu-architectures?tabs=windows
                             // arm64_v8a must become arm64-v8a
                             // armeabi_v7a must become armeabi-v7a
                             // x86_64 must not change
-                            string arch = fi.Name.Substring(0, index).Replace("_v", "-v");
-                            string libFolder = Path.Combine(targetFolderAndroidRelease, "lib", arch);
+                            var arch = fi.Name.Substring(0, index).Replace("_v", "-v");
+                            var libFolder = Path.Combine(targetFolderAndroidRelease, "lib", arch);
                             Directory.CreateDirectory(libFolder);
 
-                            using (ZipInputStream stream = new ZipInputStream(fi.OpenRead()))
+                            using var stream = new ZipInputStream(fi.OpenRead());
+                            while (stream.GetNextEntry() is { } entry)
                             {
-                                ZipEntry entry;
-                                while ((entry = stream.GetNextEntry()) != null)
-                                {
-                                    string entryFilename = Path.GetFileName(entry.Name);
-                                    if (string.IsNullOrEmpty(entryFilename) ||
-                                        !string.Equals(Path.GetExtension(entryFilename), ".so", StringComparison.InvariantCultureIgnoreCase))
-                                        continue;
+                                var entryFilename = Path.GetFileName(entry.Name);
+                                if (string.IsNullOrEmpty(entryFilename) ||
+                                    !string.Equals(Path.GetExtension(entryFilename), ".so",
+                                        StringComparison.InvariantCultureIgnoreCase))
+                                    continue;
 
-                                    using (FileStream streamWriter = File.Create(Path.Combine(libFolder, entryFilename)))
+                                using var streamWriter = File.Create(Path.Combine(libFolder, entryFilename));
+                                var data = new byte[2048];
+                                while (true)
+                                {
+                                    var size = stream.Read(data, 0, data.Length);
+                                    if (size > 0)
                                     {
-                                        int size;
-                                        byte[] data = new byte[2048];
-                                        while (true)
-                                        {
-                                            size = stream.Read(data, 0, data.Length);
-                                            if (size > 0)
-                                            {
-                                                streamWriter.Write(data, 0, size);
-                                            }
-                                            else
-                                            {
-                                                break;
-                                            }
-                                        }
+                                        streamWriter.Write(data, 0, size);
+                                    }
+                                    else
+                                    {
+                                        break;
                                     }
                                 }
                             }
@@ -207,7 +198,8 @@ namespace FlutterSync
                 if (!options.NoIos && OperatingSystem.IsMacOS())
                 {
                     Console.WriteLine("Building iOS frameworks...");
-                    FlutterTools.BuildIosFramework(tmpModulePath, FlutterModuleBuildConfig.Debug | FlutterModuleBuildConfig.Release);
+                    FlutterTools.BuildIosFramework(tmpModulePath,
+                        FlutterModuleBuildConfig.Debug | FlutterModuleBuildConfig.Release);
                     Console.WriteLine("Done.");
 
                     if (Directory.Exists(targetFolderIos))
@@ -217,25 +209,29 @@ namespace FlutterSync
 
                     Console.WriteLine("Copying iOS frameworks into destination folder...");
 
-                    bool xcframework = !version.Version.StartsWith("1");
-                    string appFrameworkName = xcframework ? "App.xcframework" : "App.framework";
-                    string flutterFrameworkName = xcframework ? "Flutter.xcframework" : "Flutter.framework";
+                    var xcframework = !version.Version.StartsWith("1");
+                    var appFrameworkName = xcframework ? "App.xcframework" : "App.framework";
+                    var flutterFrameworkName = xcframework ? "Flutter.xcframework" : "Flutter.framework";
 
-                    string appFrameworkDebug = xcframework
+                    var appFrameworkDebug = xcframework
                         ? project.GetIosXCFrameworkPath(FlutterModuleBuildConfig.Debug)
                         : project.GetIosFrameworkPath(FlutterModuleBuildConfig.Debug);
-                    string flutterFrameworkDebug = appFrameworkDebug.Replace(appFrameworkName, flutterFrameworkName, StringComparison.InvariantCultureIgnoreCase);
-                    DirectoryInfo flutterFrameworkDebugDir = new DirectoryInfo(flutterFrameworkDebug);
-                    DirectoryInfo flutterFrameworkOutputDebugDir = new DirectoryInfo(Path.Combine(targetFolderIosDebug, flutterFrameworkName));
+                    var flutterFrameworkDebug = appFrameworkDebug.Replace(appFrameworkName, flutterFrameworkName,
+                        StringComparison.InvariantCultureIgnoreCase);
+                    var flutterFrameworkDebugDir = new DirectoryInfo(flutterFrameworkDebug);
+                    var flutterFrameworkOutputDebugDir =
+                        new DirectoryInfo(Path.Combine(targetFolderIosDebug, flutterFrameworkName));
                     flutterFrameworkOutputDebugDir.Create();
                     CopyAll(flutterFrameworkDebugDir, flutterFrameworkOutputDebugDir);
 
-                    string appFrameworkRelease = xcframework
+                    var appFrameworkRelease = xcframework
                         ? project.GetIosXCFrameworkPath(FlutterModuleBuildConfig.Release)
                         : project.GetIosFrameworkPath(FlutterModuleBuildConfig.Release);
-                    string flutterFrameworkRelease = appFrameworkRelease.Replace(appFrameworkName, flutterFrameworkName, StringComparison.InvariantCultureIgnoreCase);
-                    DirectoryInfo flutterFrameworkReleaseDir = new DirectoryInfo(flutterFrameworkRelease);
-                    DirectoryInfo flutterFrameworkOutputReleaseDir = new DirectoryInfo(Path.Combine(targetFolderIosRelease, flutterFrameworkName));
+                    var flutterFrameworkRelease = appFrameworkRelease.Replace(appFrameworkName, flutterFrameworkName,
+                        StringComparison.InvariantCultureIgnoreCase);
+                    var flutterFrameworkReleaseDir = new DirectoryInfo(flutterFrameworkRelease);
+                    var flutterFrameworkOutputReleaseDir =
+                        new DirectoryInfo(Path.Combine(targetFolderIosRelease, flutterFrameworkName));
                     flutterFrameworkOutputReleaseDir.Create();
                     CopyAll(flutterFrameworkReleaseDir, flutterFrameworkOutputReleaseDir);
 
@@ -265,16 +261,16 @@ namespace FlutterSync
             Directory.CreateDirectory(target.FullName);
 
             // Copy each file into the new directory.
-            foreach (FileInfo fi in source.GetFiles())
+            foreach (var fi in source.GetFiles())
             {
                 //Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
                 fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
             }
 
             // Copy each subdirectory using recursion.
-            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            foreach (var diSourceSubDir in source.GetDirectories())
             {
-                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
+                var nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
                 CopyAll(diSourceSubDir, nextTargetSubDir);
             }
         }

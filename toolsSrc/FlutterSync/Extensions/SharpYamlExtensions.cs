@@ -9,16 +9,16 @@ namespace FlutterSync.Extensions
         public static string GetScalarValue(this YamlDocument doc, string[] keys)
         {
             // ROOT DOCUMENT
-            YamlMappingNode root = (YamlMappingNode)doc.RootNode;
+            var root = (YamlMappingNode)doc.RootNode;
             // Find the nested value
-            YamlScalarNode scalarNode = GetScalarNode(root, keys);
+            var scalarNode = GetScalarNode(root, keys);
             return scalarNode?.Value ?? string.Empty;
         }
 
         public static YamlScalarNode GetScalarNode(this YamlDocument doc, string[] keys)
         {
             // ROOT DOCUMENT
-            YamlMappingNode root = (YamlMappingNode)doc.RootNode;
+            var root = (YamlMappingNode)doc.RootNode;
             return root.GetScalarNode(keys);
         }
 
@@ -27,13 +27,13 @@ namespace FlutterSync.Extensions
             if (index >= keys.Length)
                 return null;
 
-            YamlScalarNode currentKey = new YamlScalarNode(keys[index]);
+            var currentKey = new YamlScalarNode(keys[index]);
 
             // Node NOT found
             if (node.Children.ContainsKey(currentKey) == false || node.Children[currentKey] == null)
                 return null;
 
-            YamlNode nestedNode = node.Children[currentKey];
+            var nestedNode = node.Children[currentKey];
 
             // Node FOUND
             if (nestedNode is YamlScalarNode scalarNode && index == keys.Length - 1)
@@ -54,7 +54,7 @@ namespace FlutterSync.Extensions
         public static YamlMappingNode GetMappingNode(this YamlDocument doc, string[] keys, int index = 0)
         {
             // ROOT DOCUMENT
-            YamlMappingNode root = (YamlMappingNode)doc.RootNode;
+            var root = (YamlMappingNode)doc.RootNode;
             return root.GetMappingNode(keys);
         }
 
@@ -63,20 +63,20 @@ namespace FlutterSync.Extensions
             if (index >= keys.Length)
                 return null;
 
-            YamlScalarNode currentKey = new YamlScalarNode(keys[index]);
+            var currentKey = new YamlScalarNode(keys[index]);
 
             // Node NOT found
             if (node.Children.ContainsKey(currentKey) == false || node.Children[currentKey] == null)
                 return null;
 
-            YamlNode nestedNode = node.Children[currentKey];
+            var nestedNode = node.Children[currentKey];
 
             if (nestedNode is YamlMappingNode == false)
             {
                 return null;
             }
 
-            YamlMappingNode nestedMappingNode = (YamlMappingNode) nestedNode;
+            var nestedMappingNode = (YamlMappingNode) nestedNode;
 
             // Last key: found
             if (index == keys.Length - 1)
