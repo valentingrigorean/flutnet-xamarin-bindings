@@ -1,9 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0-android</TargetFramework>
+        <TargetFramework>$(_MauiDotNetTfm)-android</TargetFramework>
         <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <!--  packing -->
+    <PropertyGroup>
+        <Version>$(FlutterVersion)</Version>
+        <PackageId>Flutnet.Interop.Android</PackageId>
+        <Product>Flutnet.Interop.Android</Product>
+        <PackageProjectUrl>https://www.flutnet.com</PackageProjectUrl>
+        <PackageTags>Flutnet Xamarin Android Xamarin.Android Flutter</PackageTags>
     </PropertyGroup>
     <ItemGroup Condition=" '$(Configuration)' != 'Release' ">
         <EmbeddedNativeLibrary Include="..\..\assets\xamarin-native-references\Android\debug\lib\arm64-v8a\libflutter.so">
@@ -41,8 +49,8 @@
         </EmbeddedJar>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.6.1.1" />
-      <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.6.2.1" />
-      <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.6.2.1" />
+        <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.6.1.1"/>
+        <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.6.2.1"/>
+        <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.6.2.1"/>
     </ItemGroup>
 </Project>

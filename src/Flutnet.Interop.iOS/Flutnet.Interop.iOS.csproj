@@ -1,9 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0-ios</TargetFramework>
+        <TargetFramework>$(_MauiDotNetTfm)-ios</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>true</ImplicitUsings>
         <IsBindingProject>true</IsBindingProject>
+    </PropertyGroup>
+    <!--  packing -->
+    <PropertyGroup>
+        <Version>$(FlutterVersion)</Version>
+        <PackageId>Flutnet.Interop.iOS</PackageId>
+        <Product>Flutnet.Interop.iOS</Product>
+        <PackageTags>Flutnet Xamarin iOS Xamarin.iOS Flutter</PackageTags>
     </PropertyGroup>
     <ItemGroup Condition=" '$(Configuration)' != 'Release' ">
         <NativeReference Include="..\..\assets\xamarin-native-references\iOS\debug\Flutter.xcframework">
