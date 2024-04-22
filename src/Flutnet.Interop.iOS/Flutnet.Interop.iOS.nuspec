@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package>
+    <metadata>
+        <id>Flutnet.Interop.iOS</id>
+        <version>3.19.6</version>
+        <title>Flutnet.Interop.iOS</title>
+        <authors>Novagem Solutions S.r.l.</authors>
+        <owners></owners>
+        <projectUrl>https://www.flutnet.com</projectUrl>
+        <repository type="git" url="https://github.com/flutnet/flutnet_xamarin-bindings"/>
+        <license type="expression">LGPL-3.0-or-later</license>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Xamarin.iOS bindings for Flutter engine's iOS embedding APIs</description>
+        <releaseNotes>First release for Flutter 3.0.1 (stable)</releaseNotes>
+        <copyright>Copyright © Novagem Solutions Srl 2020-2021</copyright>
+        <tags>Flutnet Xamarin iOS Xamarin.iOS Flutter</tags>
+        <icon>images\icon.png</icon>
+        <dependencies>
+            <group targetFramework="net7.0-ios11.0">
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin/Debug/net7.0-ios/Flutnet.Interop.iOS.dll" target="lib/net7.0-ios11.0/Debug/Flutnet.Interop.iOS.dll" />
+        <file src="bin/Release/net7.0-ios/Flutnet.Interop.iOS.dll" target="lib/net7.0-ios11.0/Release/Flutnet.Interop.iOS.dll" />
+        <file src="Flutnet.Interop.iOS.targets" target="build/Flutnet.Interop.iOS.targets"/>
+        <file src="../../assets/images/flutnet_logo_128x128_trasp.png" target="images/icon.png"/>
+        <file src="../../LICENSE.LGPL3" target="LICENSE.LGPL3"/>
+        <file src="../../LICENSE.GPL3" target="LICENSE.GPL3"/>
+        <file src="bin/ReleaseWithDebugNativeRef/net7.0-ios/Flutnet.Interop.iOS.resources/**" target="lib/net7.0-ios11.0/Debug/Flutnet.Interop.iOS.resources/"/>
+        <file src="bin/Release/net7.0-ios/Flutnet.Interop.iOS.resources/**" target="lib/net7.0-ios11.0/Release/Flutnet.Interop.iOS.resources"/>
+    </files>
+</package>

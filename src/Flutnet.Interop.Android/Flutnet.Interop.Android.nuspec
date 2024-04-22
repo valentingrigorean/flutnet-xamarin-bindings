@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Flutnet.Interop.Android</id>
+    <version>3.19.6</version>
+    <title>Flutnet.Interop.Android</title>
+    <authors>Novagem Solutions S.r.l.</authors>
+    <owners></owners>
+    <projectUrl>https://www.flutnet.com</projectUrl>
+    <repository type="git" url="https://github.com/flutnet/flutnet_xamarin-bindings" />
+    <license type="expression">LGPL-3.0-or-later</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin.Android bindings for Flutter engine's Android embedding APIs</description>
+    <releaseNotes>First release for Flutter 3.0.5 (stable)</releaseNotes>
+    <copyright>Copyright © Novagem Solutions Srl 2020-2021</copyright>
+    <tags>Flutnet Xamarin Android Xamarin.Android Flutter</tags>
+    <icon>images\icon.png</icon>
+    <dependencies>
+      <group targetFramework="net7.0-android21.0">
+        <dependency id="Xamarin.AndroidX.Lifecycle.Common" version="2.6.2.1" />
+        <dependency id="Xamarin.AndroidX.Lifecycle.Runtime" version="2.6.2.1" />
+        <dependency id="Xamarin.AndroidX.Fragment" version="1.6.1.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin/Debug/net7.0-android/Flutnet.Interop.Android.dll" target="lib/net7.0-android/Debug/Flutnet.Interop.Android.dll" />
+    <file src="bin/Debug/net7.0-android/Flutnet.Interop.Android.aar" target="lib/net7.0-android/Debug/Flutnet.Interop.Android.aar" />
+    <file src="bin/Release/net7.0-android/Flutnet.Interop.Android.dll" target="lib/net7.0-android/Release/Flutnet.Interop.Android.dll" />
+    <file src="bin/Release/net7.0-android/Flutnet.Interop.Android.aar" target="lib/net7.0-android/Release/Flutnet.Interop.Android.aar" />
+    <file src="Flutnet.Interop.Android.targets" target="build/Flutnet.Interop.Android.targets" />
+    <file src="../../assets/images/flutnet_logo_128x128_trasp.png" target="images/icon.png" />
+    <file src="../../LICENSE.LGPL3" target="LICENSE.LGPL3" />
+    <file src="../../LICENSE.GPL3" target="LICENSE.GPL3" />
+  </files>
+</package>
