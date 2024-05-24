@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net7.0-ios</TargetFrameworks>
+        <TargetFrameworks>net8.0-ios</TargetFrameworks>
         <Nullable>enable</Nullable>
         <ImplicitUsings>true</ImplicitUsings>
         <IsBindingProject>true</IsBindingProject>
+        <IsPackable>true</IsPackable>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     </PropertyGroup>
     <ItemGroup Condition=" '$(Configuration)' != 'Release' ">
         <NativeReference Include="..\..\assets\xamarin-native-references\iOS\debug\Flutter.xcframework">

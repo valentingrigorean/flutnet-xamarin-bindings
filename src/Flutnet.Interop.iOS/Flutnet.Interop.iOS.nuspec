@@ -16,18 +16,17 @@
         <tags>Flutnet Xamarin iOS Xamarin.iOS Flutter</tags>
         <icon>images\icon.png</icon>
         <dependencies>
-            <group targetFramework="net7.0-ios11.0">
-            </group>
+            <group targetFramework="net8.0-ios17.2" />
         </dependencies>
     </metadata>
     <files>
-        <file src="bin/Debug/net7.0-ios/Flutnet.Interop.iOS.dll" target="lib/net7.0-ios11.0/Debug/Flutnet.Interop.iOS.dll" />
-        <file src="bin/Release/net7.0-ios/Flutnet.Interop.iOS.dll" target="lib/net7.0-ios11.0/Release/Flutnet.Interop.iOS.dll" />
+        <file src="bin/Debug/net8.0-ios/Flutnet.Interop.iOS.dll" target="lib/net8.0-ios17.2/Debug/Flutnet.Interop.iOS.dll" />
+        <file src="bin/Release/net8.0-ios/Flutnet.Interop.iOS.dll" target="lib/net8.0-ios17.2/Release/Flutnet.Interop.iOS.dll" />
         <file src="Flutnet.Interop.iOS.targets" target="build/Flutnet.Interop.iOS.targets"/>
         <file src="../../assets/images/flutnet_logo_128x128_trasp.png" target="images/icon.png"/>
         <file src="../../LICENSE.LGPL3" target="LICENSE.LGPL3"/>
         <file src="../../LICENSE.GPL3" target="LICENSE.GPL3"/>
-        <file src="bin/ReleaseWithDebugNativeRef/net7.0-ios/Flutnet.Interop.iOS.resources/**" target="lib/net7.0-ios11.0/Debug/Flutnet.Interop.iOS.resources/"/>
-        <file src="bin/Release/net7.0-ios/Flutnet.Interop.iOS.resources/**" target="lib/net7.0-ios11.0/Release/Flutnet.Interop.iOS.resources"/>
+        <file src="bin/ReleaseWithDebugNativeRef/net8.0-ios/Flutnet.Interop.iOS.resources/**" target="lib/net8.0-ios17.2/Debug/Flutnet.Interop.iOS.resources/"/>
+        <file src="bin/Release/net8.0-ios/Flutnet.Interop.iOS.resources/**" target="lib/net8.0-ios17.2/Release/Flutnet.Interop.iOS.resources"/>
     </files>
 </package>

@@ -8,33 +8,33 @@ using UserNotifications;
 
 namespace Flutnet.Interop
 {
-    [Static]
-    interface Constants
-    {
-        // extern const NSNotificationName _Nonnull FlutterSemanticsUpdateNotification;
-        [Field("FlutterSemanticsUpdateNotification", "__Internal")]
-        NSString FlutterSemanticsUpdateNotification { get; }
-
-        // extern NSString *const _Nonnull FlutterDefaultDartEntrypoint;
-        [Field("FlutterDefaultDartEntrypoint", "__Internal")]
-        NSString FlutterDefaultDartEntrypoint { get; }
-
-        // extern NSString *const _Nonnull FlutterDefaultInitialRoute;
-        [Field("FlutterDefaultInitialRoute", "__Internal")]
-        NSString FlutterDefaultInitialRoute { get; }
-
-        // extern const NSObject * _Nonnull FlutterEndOfEventStream;
-        [Field("FlutterEndOfEventStream", "__Internal")]
-        [Internal]
-        //NSObject FlutterEndOfEventStream { get; }
-        IntPtr FlutterEndOfEventStream { get; }
-
-        // extern const NSObject * _Nonnull FlutterMethodNotImplemented;
-        [Field("FlutterMethodNotImplemented", "__Internal")]
-        // [Internal]
-        //NSObject FlutterMethodNotImplemented { get; }
-        IntPtr FlutterMethodNotImplementedPtr { get; }
-    }
+    // [Static]
+    // interface Constants
+    // {
+    //     // extern const NSNotificationName _Nonnull FlutterSemanticsUpdateNotification;
+    //     [Field("FlutterSemanticsUpdateNotification", "__Internal")]
+    //     NSString FlutterSemanticsUpdateNotification { get; }
+    //
+    //     // extern NSString *const _Nonnull FlutterDefaultDartEntrypoint;
+    //     [Field("FlutterDefaultDartEntrypoint", "__Internal")]
+    //     NSString FlutterDefaultDartEntrypoint { get; }
+    //
+    //     // extern NSString *const _Nonnull FlutterDefaultInitialRoute;
+    //     [Field("FlutterDefaultInitialRoute", "__Internal")]
+    //     NSString FlutterDefaultInitialRoute { get; }
+    //
+    //     // extern const NSObject * _Nonnull FlutterEndOfEventStream;
+    //     [Field("FlutterEndOfEventStream", "__Internal")]
+    //     [Internal]
+    //     //NSObject FlutterEndOfEventStream { get; }
+    //     IntPtr FlutterEndOfEventStream { get; }
+    //
+    //     // extern const NSObject * _Nonnull FlutterMethodNotImplemented;
+    //     [Field("FlutterMethodNotImplemented", "__Internal")]
+    //     // [Internal]
+    //     //NSObject FlutterMethodNotImplemented { get; }
+    //     IntPtr FlutterMethodNotImplementedPtr { get; }
+    // }
 
     // typedef void (^FlutterBinaryReply)(NSData * _Nullable);
     delegate void FlutterBinaryReply([NullAllowed] NSData reply);

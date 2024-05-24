@@ -1,26 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
-    <Reference Include="Flutnet.Interop.iOS">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\net7.0-ios11.0\Debug\Flutnet.Interop.iOS.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <Reference Include="Flutnet.Interop.iOS">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\net7.0-ios11.0\Release\Flutnet.Interop.iOS.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <!-- Include any other resources or native references here -->
-  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
-    <NativeReference Include="$(MSBuildThisFileDirectory)..\lib\net7.0-ios11.0\Debug\Flutnet.Interop.iOS.resources\Flutter.xcframework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <NativeReference Include="$(MSBuildThisFileDirectory)..\lib\net7.0-ios11.0\Release\Flutnet.Interop.iOS.resources\Flutter.xcframework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
-  </ItemGroup>
+    <!-- Debug configuration -->
+    <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+        <Reference Include="Flutnet.Interop.iOS">
+            <HintPath>$(MSBuildThisFileDirectory)..\lib\net8.0-ios17.2\Debug\Flutnet.Interop.iOS.dll</HintPath>
+        </Reference>
+        <NativeReference Include="$(MSBuildThisFileDirectory)..\lib\net8.0-ios17.2\Debug\Flutnet.Interop.iOS.resources\Flutter.xcframework">
+            <Kind>Framework</Kind>
+            <SmartLink>False</SmartLink>
+            <ForceLoad>True</ForceLoad>
+            <LinkerFlags>-ObjC</LinkerFlags>
+        </NativeReference>
+    </ItemGroup>
+    <!-- Release configuration -->
+    <ItemGroup Condition="'$(Configuration)' == 'Release'">
+        <Reference Include="Flutnet.Interop.iOS">
+            <HintPath>$(MSBuildThisFileDirectory)..\lib\net8.0-ios17.2\Release\Flutnet.Interop.iOS.dll</HintPath>
+        </Reference>
+        <NativeReference Include="$(MSBuildThisFileDirectory)..\lib\net8.0-ios17.2\Release\Flutnet.Interop.iOS.resources\Flutter.xcframework">
+            <Kind>Framework</Kind>
+            <SmartLink>False</SmartLink>
+            <ForceLoad>True</ForceLoad>
+            <LinkerFlags>-ObjC</LinkerFlags>
+        </NativeReference>
+    </ItemGroup>
 </Project>
