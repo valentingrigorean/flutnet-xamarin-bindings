@@ -12,13 +12,13 @@
   </ItemGroup>
   <!-- Include any other resources or native references here -->
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
-    <NativeReference Include="$(MSBuildThisFileDirectory)../lib/net7.0-ios11.0/Flutnet.Interop.iOS.resources/Flutter.xcframework">
+    <NativeReference Include="$(MSBuildThisFileDirectory)..\lib\net7.0-ios11.0\Debug\Flutnet.Interop.iOS.resources\Flutter.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <NativeReference Include="$(MSBuildThisFileDirectory)../lib/net7.0-ios11.0/Debug/Flutnet.Interop.iOS.resources/Flutter.xcframework">
+    <NativeReference Include="$(MSBuildThisFileDirectory)..\lib\net7.0-ios11.0\Release\Flutnet.Interop.iOS.resources\Flutter.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>

@@ -6,6 +6,6 @@ ARTIFACTS_DIR=$SCRIPT_DIR/../artifacts
 SRC_DIR=$SCRIPT_DIR/../src
 
 # Create NuGet packages for binding libraries
-#dotnet pack "$SRC_DIR/Flutnet.Interop.Android/Flutnet.Interop.Android.csproj"  --no-build --no-restore -p:NuspecFile="$SRC_DIR/Flutnet.Interop.Android/Flutnet.Interop.Android.nuspec" -o "$ARTIFACTS_DIR/nuget-packages"
+dotnet pack "$SRC_DIR/Flutnet.Interop.Android/Flutnet.Interop.Android.csproj"  --no-build --no-restore -p:NuspecFile="$SRC_DIR/Flutnet.Interop.Android/Flutnet.Interop.Android.nuspec" -o "$ARTIFACTS_DIR/nuget-packages"
 dotnet pack "$SRC_DIR/Flutnet.Interop.iOS/Flutnet.Interop.iOS.csproj" --no-build --no-restore -p:NuspecFile="$SRC_DIR/Flutnet.Interop.iOS/Flutnet.Interop.iOS.nuspec" -o "$ARTIFACTS_DIR/nuget-packages"
 #dotnet pack "$SRC_DIR/Flutnet.Interop.Java8/Flutnet.Interop.Java8.csproj" -o "$ARTIFACTS_DIR/nuget-packages"
